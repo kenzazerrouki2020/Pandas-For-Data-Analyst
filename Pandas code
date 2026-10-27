@@ -1,0 +1,100 @@
+import pandas as pd
+
+custemer = {
+    "name":["kenza","menad","ameziane","yacine","biba"],
+    "age":[34,6,43,46,42],
+    "salary":[50000,4000,2000,5000,7000],
+    "department":['it','dh','it','dh','it']
+}
+df=pd.DataFrame(custemer)
+print(df)
+print("#"*50)
+
+#اختيار بيانات  حسب الموقع 
+print(df.iloc[1,0])
+
+#اختيار بيانات حسب الفهرس
+print(df.loc[1,"age"])
+
+#تصفية بيانات مع شرظ
+print(df[df['age']>20])
+
+# تصفية ييانات مع شرظين
+print(df[(df['age']>30)&(df["salary"]>5000)])
+
+# sort_values()
+print(df.sort_values('salary',ascending=False))
+
+# how to use (mean(),sum(),max(),min())
+print(df['salary'].max())
+
+#how to use groupby()
+print(df.groupby('department')['salary'].sum())
+
+#how to know that data is empty. isnull()
+import pandas as pd
+
+data = {
+    "Name": ["Omar", "Lina", "Ali"],
+    "Age": [27, 30, 25],
+    "Salary": [35000, None, 45000]
+}
+
+df = pd.DataFrame(data)
+print(df.isnull().sum())
+
+#how to use fillna()=> i mean to give .... to empty data
+print(df["Salary"].fillna(40000))
+
+#to delet the empty data => dropna()
+print(df['Salary'].dropna())
+
+
+
+import pandas as pd
+
+data = {
+    "Name": ["Omar", "Lina", "Ali", "Sara"],
+    "Age": [27, 30, 25, None],
+    "Salary": [35000, None, 45000, 50000]
+}
+
+df = pd.DataFrame(data)
+
+# 1. Count missing values in each column
+print(df.isnull().sum())
+
+# 2. Replace missing salary with 40000
+df["Salary"] = df["Salary"].fillna(40000)
+
+#3. replace missing age with 45 
+df['Age']=df["Age"].fillna(45)
+
+# 3. Display the updated table
+print(df)
+
+
+
+import pandas as pd
+
+data = {
+    "Name": ["Omar", "Lina", "Ali", "Sara"],
+    "Age": [27, 30, 25, None],
+    "Salary": [35000, None, 45000, 50000],
+    "Department": ["Sales", "IT", "Sales", "IT"]
+}
+
+df = pd.DataFrame(data)
+
+
+# 1. Filter rows where Department is IT
+print(df[df["Department"] == "IT"])
+
+# 2. Calculate the average salary before filling missing values
+print(df["Salary"].mean())
+
+# 3. Fill the missing salary and save the change
+df["Salary"] = df["Salary"].fillna(40000)
+
+# 4. Count missing values in each column
+print(df.isnull().sum())
